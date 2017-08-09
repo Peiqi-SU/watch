@@ -4,7 +4,7 @@
 final int sketch_w = 1000; 
 final int sketch_h = 800;
 float thickness_begin = 1;
-float thickness_end = 4;
+float thickness_end = 5;
 int d = int(sketch_h*0.8/61)*61;
 int dist = d/61;
 
@@ -23,6 +23,7 @@ int btn_pressed = 5;
 int flag_btn_display = 5; // display for x frame
 
 boolean display_control_bar = true;
+boolean thickness_vary = false;
 
 
 void setup() {
@@ -44,7 +45,7 @@ void draw() {
   controled_delta_sec = delta_sec*k + i;
   i = 0;
   sec += controled_delta_sec;
-  println(k + " --- "+delta_sec + "  |  delta: " + controled_delta_sec + "   | sec: " + sec);
+  //println(k + " --- "+delta_sec + "  |  delta: " + controled_delta_sec + "   | sec: " + sec);
 
   display_sec = int(sec%60); // 0-59
   if (display_sec <0) {
@@ -59,9 +60,6 @@ void draw() {
   if (hour <0) {
     hour = 24+hour;
   }
-
-  //hour =  (((millis()%86400000)*k)/3600000)%24; // 0-23
-  //min = (((millis()%3600000)*k)/60000)%60; //0-59
 
   // draw bg and watch face
   my_draw_bg(hour);
@@ -90,10 +88,17 @@ void my_draw_clock_lines(int hour) {
   } else {
     stroke(255);
   } 
-  strokeWeight(thickness_begin);
+
   strokeCap(SQUARE);
   hint(ENABLE_STROKE_PURE);
   for (int i = 0; i < min; i++) {
+    if (thickness_vary) {
+      float thickness = (thickness_end-thickness_begin)/60*i;
+      println(thickness);
+      strokeWeight(thickness);
+    } else {
+      strokeWeight(thickness_begin);
+    }
     int x0 = 0;
     float y0 = (sketch_h + d)/2-dist*(i+1)-(thickness_begin%2)*0.5;
     int x1 = sketch_w;
@@ -110,9 +115,10 @@ void my_draw_control_bar (boolean display_control_bar, int index) {
     shape(control_bar, (sketch_w/2-180), (sketch_h-80));
     fill(127);
     textFont(my_font, 28);
-    text("time is " + hour + ":" + min + ":" + display_sec, (sketch_w/2+200), (sketch_h-40));
+    text("time is " + hour + "h " + min + "m " + display_sec +"s", (sketch_w/2+200), (sketch_h-40));
     textFont(my_font, 14);
-    text("Press \"h\" to hide or show this control panel", 5, (sketch_h-60));
+    text("1. Press \"h\" to hide or show this control panel", 5, (sketch_h-60));
+    text("2. Press \"t\" to change line thickness", 5, (sketch_h-20));
     textFont(my_font, 11);
     text("hour-1    | fast backward |    normal    |    pause    | fast forward |    hour+1", (sketch_w/2-180), (sketch_h-6));
     stroke(127);
@@ -208,5 +214,8 @@ void mouseClicked() {
 void keyPressed() {
   if (key == 'h' || key == 'H') {
     display_control_bar = !display_control_bar;
+  }
+  if (key == 't' || key == 'T') {
+    thickness_vary = !thickness_vary;
   }
 }
