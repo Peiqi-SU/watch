@@ -118,55 +118,56 @@ void my_draw_control_bar (boolean display_control_bar, int index) {
     text("time is " + hour + "h " + min + "m " + display_sec +"s", (sketch_w/2+200), (sketch_h-40));
     textFont(my_font, 14);
     text("1. Press \"h\" to hide or show this control panel", 5, (sketch_h-60));
-    text("2. Press \"t\" to change line thickness", 5, (sketch_h-20));
+    text("2. Press \"t\" to change line thickness", 5, (sketch_h-30));
     textFont(my_font, 11);
     text("hour-1    | fast backward |    normal    |    pause    | fast forward |    hour+1", (sketch_w/2-180), (sketch_h-6));
     stroke(127);
     line(0, sketch_h-80, sketch_w, sketch_h-80);
-  }
 
-  // click
-  fill(255, 100); 
-  switch (index) {
-    // last hour
-  case 1:
-    if (flag_btn_display>0) {
-      rect((sketch_w/2-180), (sketch_h-80), 60, 60);
-      flag_btn_display --;
+
+    // click
+    fill(255, 100); 
+    switch (index) {
+      // last hour
+    case 1:
+      if (flag_btn_display>0) {
+        rect((sketch_w/2-180), (sketch_h-80), 60, 60);
+        flag_btn_display --;
+      }
+      break;
+
+      // backward
+    case 2:
+      rect((sketch_w/2-120), (sketch_h-80), 60, 60);
+      k = -speed;
+      break;
+
+      // play
+    case 3:
+      rect((sketch_w/2-60), (sketch_h-80), 60, 60);
+      k = 1;
+      break;
+
+      // pause
+    case 4:
+      rect(sketch_w/2, (sketch_h-80), 60, 60);
+      k = 0;
+      break;
+
+      // forward
+    case 5:
+      rect((sketch_w/2+60), (sketch_h-80), 60, 60);
+      k = speed;
+      break;
+
+      // next hour
+    case 6:
+      if (flag_btn_display>0) {
+        rect((sketch_w/2+120), (sketch_h-80), 60, 60);
+        flag_btn_display --;
+      }
+      break;
     }
-    break;
-
-    // backward
-  case 2:
-    rect((sketch_w/2-120), (sketch_h-80), 60, 60);
-    k = -speed;
-    break;
-
-    // play
-  case 3:
-    rect((sketch_w/2-60), (sketch_h-80), 60, 60);
-    k = 1;
-    break;
-
-    // pause
-  case 4:
-    rect(sketch_w/2, (sketch_h-80), 60, 60);
-    k = 0;
-    break;
-
-    // forward
-  case 5:
-    rect((sketch_w/2+60), (sketch_h-80), 60, 60);
-    k = speed;
-    break;
-
-    // next hour
-  case 6:
-    if (flag_btn_display>0) {
-      rect((sketch_w/2+120), (sketch_h-80), 60, 60);
-      flag_btn_display --;
-    }
-    break;
   }
 }
 
@@ -174,38 +175,40 @@ void my_draw_control_bar (boolean display_control_bar, int index) {
 void mouseClicked() {
   if (mouseY > (sketch_h-80)) {
     btn_pressed = 0;
-    // last hour
-    if (mouseX > (sketch_w/2-180) && mouseX < (sketch_w/2-120)) {
-      btn_pressed = 1;
-      flag_btn_display = 30;
-      i = - 3600;
-    }
+    if (display_control_bar) {
+      // last hour
+      if (mouseX > (sketch_w/2-180) && mouseX < (sketch_w/2-120)) {
+        btn_pressed = 1;
+        flag_btn_display = 30;
+        i = - 3600;
+      }
 
-    // backward
-    if (mouseX > (sketch_w/2-120) && mouseX < (sketch_w/2-60)) {
-      btn_pressed = 2;
-    }
+      // backward
+      if (mouseX > (sketch_w/2-120) && mouseX < (sketch_w/2-60)) {
+        btn_pressed = 2;
+      }
 
-    // play
-    if (mouseX > (sketch_w/2-60) && mouseX < sketch_w/2) {
-      btn_pressed = 3;
-    }
+      // play
+      if (mouseX > (sketch_w/2-60) && mouseX < sketch_w/2) {
+        btn_pressed = 3;
+      }
 
-    // pause
-    if (mouseX > sketch_w/2 && mouseX < (sketch_w/2+60)) {
-      btn_pressed = 4;
-    }
+      // pause
+      if (mouseX > sketch_w/2 && mouseX < (sketch_w/2+60)) {
+        btn_pressed = 4;
+      }
 
-    // fast forward
-    if (mouseX > (sketch_w/2+60) && mouseX < (sketch_w/2+120)) {
-      btn_pressed = 5;
-    }
+      // fast forward
+      if (mouseX > (sketch_w/2+60) && mouseX < (sketch_w/2+120)) {
+        btn_pressed = 5;
+      }
 
-    // next hour
-    if (mouseX > (sketch_w/2+120) && mouseX < (sketch_w/2+180)) {
-      btn_pressed = 6;
-      flag_btn_display = 30;
-      i = 3600;
+      // next hour
+      if (mouseX > (sketch_w/2+120) && mouseX < (sketch_w/2+180)) {
+        btn_pressed = 6;
+        flag_btn_display = 30;
+        i = 3600;
+      }
     }
   }
 }
