@@ -103,7 +103,7 @@ void my_draw_clock_lines(int hour, int min, float sec) {
   float modded_second = sec%43200;
   if (modded_second<0) modded_second+=43200;
   
-  println(sec,modded_second);
+  //println(sec,modded_second);
   if ((modded_second)>720 && (modded_second)<3660 ) {
     float mapped_angle = map(modded_second,720,3660,0,180);
     to_radians = radians(360-mapped_angle);
@@ -113,19 +113,16 @@ void my_draw_clock_lines(int hour, int min, float sec) {
     to_radians = radians(360-(angle_per_sec*modded_second)%360);
   }
   
-  //println(sec + " * " + angle_per_sec + " = " +angle_per_sec*sec + " -- " + to_radians);
-  x1 = x0 + cos(to_radians)*r*0.73;
-  y1 = y0 - sin(to_radians)*r*0.73;
-  x2 = x0 - cos(to_radians)*r*0.73;
-  y2 = y0 + sin(to_radians)*r*0.73;
-  line(x0, y0, x1, y1);
-  line(x0, y0, x2, y2);
+  // draw blue arc
+  noStroke();
+  fill(#0000ff);
+  arc(x0, y0, r*2, r*2, (PI-to_radians), (2*PI-to_radians), PIE);
 
-  // text
-  x3 = x0 + cos(to_radians)*r*0.85;
-  y3 = y0 - sin(to_radians)*r*0.85;
-  x4 = x0 - cos(to_radians)*r*0.85;
-  y4 = y0 + sin(to_radians)*r*0.85;
+  // text is alway on white part
+  x3 = x0 + cos(to_radians-PI/36)*r*0.85;
+  y3 = y0 - sin(to_radians-PI/36)*r*0.85;
+  x4 = x0 - cos(to_radians+PI/36)*r*0.85;
+  y4 = y0 + sin(to_radians+PI/36)*r*0.85;
   fill(0);
   textFont(my_font, 40);
   textAlign(CENTER, CENTER);
