@@ -1,4 +1,4 @@
-class Box {
+class Dot {
   Body body;
   float r;
   float minR;
@@ -7,7 +7,7 @@ class Box {
   int myIndex;
 
 
-  Box(int myIndex_) {
+  Dot(int myIndex_) {
 
     myIndex = myIndex_;
     r = 140/myIndex +40;
@@ -67,7 +67,6 @@ class Box {
     distance = distance.mul(5);
     body.applyForce(distance, boxpos);
   }
-
 
 
   void display () {

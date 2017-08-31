@@ -11,7 +11,7 @@ final int sketch_h = 800;
 int outR = int(sketch_h*0.76/2);
 
 Box2DProcessing box2d;
-ArrayList<Box> boxes;
+ArrayList<Dot> dots;
 Boundary boundary;
 
 
@@ -28,7 +28,7 @@ void setup() {
   box2d = new Box2DProcessing(this);
   box2d.createWorld();
   box2d.setGravity(0, 0);
-  boxes = new ArrayList<Box>();
+  dots = new ArrayList<Dot>();
   boundary = new Boundary(sketch_w/2, sketch_h/2, outR);
 }
 
@@ -48,13 +48,13 @@ void draw () {
 
   if (flag ==360) {
     // add dot
-    Box p = new Box(min);
-    boxes.add(p);
+    Dot p = new Dot(min);
+    dots.add(p);
     //println(min);
     
     min ++;
     // calculate other dot size
-    for (Box b : boxes) {
+    for (Dot b : dots) {
       b.calculateSize();
     }
   }
@@ -64,7 +64,7 @@ void draw () {
   }
 
   // display dot
-  for (Box b : boxes) {
+  for (Dot b : dots) {
     b.bodyResize(b.body);
     b.attract();
     b.display();
@@ -73,8 +73,8 @@ void draw () {
 
   if (min == 61) {
     min = 1;
-    boxes.clear();
-    for (Box b : boxes) {
+    dots.clear();
+    for (Dot b : dots) {
       b.killBody();
     }
   }
