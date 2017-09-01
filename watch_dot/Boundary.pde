@@ -31,5 +31,7 @@ class Boundary {
 
     // fixture
     b.createFixture(cs, 1);
+    
+    b.setUserData(this); 
   }
 }
