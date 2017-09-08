@@ -21,6 +21,7 @@ PFont my_font;
 
 void setup() {
   fullScreen();
+  smooth(3);
   //size(230, 230);
   frameRate(1);
   background(0);
@@ -103,6 +104,7 @@ void calculate_pos() {
 void my_draw_clock_lines(int hour, int min) {
   stroke(0);
   strokeWeight(2);
+  //hint(ENABLE_STROKE_PURE);
 
   x1 = x0 + cos(current_radians)*r_line;
   y1 = y0 + sin(current_radians)*r_line;

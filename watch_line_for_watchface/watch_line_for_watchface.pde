@@ -16,6 +16,7 @@ boolean thickness_vary = false;
 
 void setup() {
   fullScreen();
+  //smooth(3);
   frameRate(1);
   background(0);
   sketch_w = width;
