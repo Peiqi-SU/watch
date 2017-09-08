@@ -116,7 +116,7 @@ void reset_all() {
     b.killBody();
   }
   dots.clear();
-  println(dots);
+  //println(dots);
 }
 
 void display_control_bar() {
