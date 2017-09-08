@@ -6,7 +6,7 @@ class Dot {
   float preR, newR;
   int myIndex;
   int growSpeed = 3; // 0.1s
-  int shrinkSpeed = 180; // 1s
+  int shrinkSpeed = 150; // 1s
   int attractForce = 20; // bigger number = stronger
   float _friction = 0.5;
   float _restitution = 0.3;

@@ -13,8 +13,8 @@ int sketch_w = 0, sketch_h = 0;
 int outR = 0;
 
 // every dot size
-float[] bornR = {74, 42, 34, 26, 15, 10, 37, 21, 10, 21, 15, 31, 37, 10, 15, 31, 37, 21, 10, 21, 15, 31, 37, 10, 15, 31, 37, 21, 10, 15, 15, 26, 21, 10, 15, 31, 15, 21, 10, 21, 15, 31, 37, 10, 15, 31, 37, 21, 10, 21, 15, 31, 37, 10, 15, 31, 37, 21, 10, 10};
-float[] setminR ={37, 26, 15, 10, 7, 4, 23, 17, 6, 10, 10, 19, 15, 10, 7, 4, 29, 17, 6, 10, 10, 22, 15, 10, 7, 4, 18, 17, 6, 10, 10, 21, 15, 10, 7, 4, 29, 17, 6, 10, 10, 26, 15, 10, 7, 4, 18, 17, 6, 10, 10, 23, 15, 10, 7, 4, 29, 17, 6, 10};
+float[] bornR = {74, 42, 34, 26, 15, 10, 37, 21, 10, 8, 15, 31, 37, 10, 15, 31, 37, 7, 10, 21, 15, 31, 37, 10, 9, 31, 37, 21, 10, 15, 15, 11, 21, 10, 15, 31, 15, 21, 10, 12, 15, 31, 37, 10, 15, 31, 37, 21, 10, 13, 15, 31, 37, 10, 15, 31, 37, 11, 10, 10};
+float[] setminR ={ 37, 26, 15, 10, 7, 4, 23, 17, 6, 4, 10, 19, 15, 10, 7, 4, 29, 5, 6, 10, 10, 22, 15, 8, 7, 4, 18, 17, 6, 10, 10, 8, 15, 10, 7, 4, 29, 17, 6, 7, 10, 26, 15, 10, 7, 4, 18, 17, 6, 9, 10, 23, 15, 10, 7, 4, 29, 9, 6, 10};
 float dot_dist_sqr = 0, r_sqr = 0;
 
 Box2DProcessing box2d;
@@ -32,7 +32,9 @@ boolean btn_add = false;
 void setup() {
   //size(1000, 800);
   fullScreen();
-  smooth(3);
+  //smooth(3);
+  void setAntiAlias (true);
+
   frameRate(30);
   background(255);
   sketch_w = width;
@@ -63,6 +65,16 @@ void draw () {
     // add dot
     if ((min != minute()+1) || btn_add) {
       min = minute()+1;
+
+      if (min ==1) {// reset every hour
+        dots.clear();
+        for (Dot b : dots) {
+          b.killBody();
+        }
+        for (int i = 0; i<bornR.length; i++) {
+          bornR[i] =  bornR[i] * random(0.9, 1.1);
+        }
+      }
       Dot p = new Dot(min);
       dots.add(p);
       //println(min);
@@ -85,18 +97,6 @@ void draw () {
         //println("sssssss");
         b.shrink();
         countDotTouch = 0;
-      }
-    }
-
-    // reset every hour
-    if (min == 61) {
-      min = 1;
-      dots.clear();
-      for (Dot b : dots) {
-        b.killBody();
-      }
-      for (int i = 0; i<bornR.length; i++) {
-        bornR[i] =  bornR[i] * random(0.9, 1.1);
       }
     }
   }
