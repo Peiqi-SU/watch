@@ -6,7 +6,7 @@ class Dot {
   float preR, newR;
   int myIndex;
   int growSpeed = 3; // 0.1s
-  int shrinkSpeed = 90; // 1s
+  int shrinkSpeed = 180; // 1s
   int attractForce = 20; // bigger number = stronger
   float _friction = 0;
   float _restitution = 0.5;
@@ -14,7 +14,6 @@ class Dot {
   color _color;
 
   Dot(int myIndex_) {
-
     myIndex = myIndex_;
     nextStepR = bornR[myIndex-1];
     r = 1.0;
@@ -24,7 +23,7 @@ class Dot {
     // Build body
     BodyDef bd = new BodyDef();
     bd.type = BodyType.DYNAMIC;
-    bd.bullet = true;
+    //bd.bullet = true;
     bd.position.set(box2d.coordPixelsToWorld(random(350, 650), random(250, 550)));
     body = box2d.createBody(bd);
 
@@ -38,7 +37,6 @@ class Dot {
     fd.density = 1;
     fd.friction = _friction;
     fd.restitution = _restitution;
-
     body.createFixture(fd);
     
     body.setUserData(this);  
@@ -56,7 +54,6 @@ class Dot {
           r=nextStepR;
         }
       }
-
       // go smaller
       if (r > nextStepR) {
         r = r - ((r-nextStepR)/shrinkSpeed);
@@ -99,7 +96,6 @@ class Dot {
 
   void display () {
     Vec2 pos = box2d.getBodyPixelCoord(body);
-
     pushMatrix();
     translate(pos.x, pos.y);
     fill(_color);
@@ -113,7 +109,7 @@ class Dot {
   }
   
   void shrink() {
-    _color = color(0, 255, 0);
+    //_color = color(0, 255, 0);
     nextStepR = nextStepR *0.9;
   }
 }
