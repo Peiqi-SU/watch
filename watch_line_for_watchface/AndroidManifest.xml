@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="">
-    <uses-sdk android:minSdkVersion="25" android:targetSdkVersion="25"/>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="us.thinkcreate.yumi.watch_line">
+    <uses-sdk android:minSdkVersion="25" android:targetSdkVersion="26"/>
     <uses-feature android:name="android.hardware.type.watch"/>
     <application android:icon="@drawable/icon" android:label="" android:supportsRtl="true">
         <uses-library android:name="com.google.android.wearable" android:required="false"/>

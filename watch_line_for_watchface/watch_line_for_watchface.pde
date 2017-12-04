@@ -73,6 +73,6 @@ void my_draw_clock_lines() {
   }
 }
 
-void mousePressed() {
-  thickness_vary = !thickness_vary;
-}
+//void mousePressed() {
+//  thickness_vary = !thickness_vary;
+//}

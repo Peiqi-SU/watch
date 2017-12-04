@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="">
-    <uses-sdk android:minSdkVersion="25" android:targetSdkVersion="25"/>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="us.thinkcreate.yumi.watch_balance_blue">
+    <uses-sdk android:minSdkVersion="25" android:targetSdkVersion="26"/>
     <uses-feature android:name="android.hardware.type.watch"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <application android:icon="@drawable/icon" android:label="" android:supportsRtl="true">
