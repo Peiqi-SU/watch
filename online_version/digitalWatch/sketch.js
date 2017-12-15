@@ -25,19 +25,11 @@ var myDefBalance = {
   s: 0,
   x0: 0,
   y0: 0,
-  // x1: 0,
-  // x2: 0,
-  // x3: 0,
-  // x4: 0,
-  // y1: 0,
-  // y2: 0,
-  // y3: 0,
-  // y4: 0,
   diaText: 0,
   myFont: 0,
   myFontSize: 22,
   myFontSizeToTop: 7, // myFontSize * 0.3
-  myFontSizeToBtm: 12,// myFontSize * 0.5
+  myFontSizeToBtm: 12, // myFontSize * 0.5
 
   current_radians: 0,
   delta_radians: 0,
@@ -50,14 +42,7 @@ var myDefBalance = {
 
   // tangent
   pg: 0,
-  // moffset: 0,
-  // mnew_offset: 0,
-  // hoffset: 0,
-  // hnew_offset: 0,
-  // mnear_x: 0.0,
-  // mnear_y: 0.0,
-  // hnear_x: 0.0,
-  // hnear_y: 0.0,
+
 };
 
 var myDefDot = {
@@ -153,9 +138,6 @@ function uiUpdate() {
   myDefBalance.mnew_offset = createVector(1000.0, 1000.0, 1000.0);
   myDefBalance.hoffset = createVector(1000.0, 1000.0, 1000.0);
   myDefBalance.hnew_offset = createVector(1000.0, 1000.0, 1000.0);
-
-  // myGetTime();
-  //   calculate_pos_balance_watch();
 }
 
 function drawLineWatch() {
@@ -180,8 +162,6 @@ function drawLineWatch() {
     var y1 = y0;
     line(x0, y0, x1, y1);
   }
-
-  //console.log("drawLineWatch");
 }
 
 function drawBalanceWatch() {
@@ -190,19 +170,8 @@ function drawBalanceWatch() {
   calculate_pos_balance_watch();
   my_draw_clock_lines_balance_watch(myDefBalance.h, myDefBalance.m);
 
-// for debug ///////////////////////////////////////////////////////////////////////////////
+  // for debug ///////////////////////////////////////////////////////////////////////////////
   //image(myDefBalance.pg, 0, 0);
-
-  // reset variables
-  // myDefBalance.moffset.set(1000.0, 1000.0, 1000.0);
-  // myDefBalance.mnew_offset.set(1000.0, 1000.0, 1000.0);
-  // myDefBalance.mnear_x = 0.0;
-  // myDefBalance.mnear_y = 0.0;
-  // myDefBalance.hoffset.set(1000.0, 1000.0, 1000.0);
-  // myDefBalance.hnew_offset.set(1000.0, 1000.0, 1000.0);
-  // myDefBalance.hnear_x = 0.0;
-  // myDefBalance.hnear_y = 0.0;
-
 }
 
 function drawDotWatch() {
@@ -258,13 +227,6 @@ function my_draw_clock_lines_balance_watch(myHour, myMin) {
   // calculate text position on pgraphic
   var calculatedHourMinCoord = calculatePG_balance_watch(myDefBalance.current_radians, myGlobalDef.dia / 2, myGlobalDef.dia / 2 * 0.8, myHour, myMin);
 
-   //console.log("0:"+calculatedHourMinCoord[0] + "   1:"+calculatedHourMinCoord[1] + "   2:"+calculatedHourMinCoord[1] + "   3:"+calculatedHourMinCoord[1])
-
-  // myDefBalance.x3 = myDefBalance.x3 + (myDefBalance.hoffset.x - myDefBalance.hnear_x);
-  // myDefBalance.y3 = myDefBalance.y3 + (myDefBalance.hoffset.y - myDefBalance.hnear_y);
-  // myDefBalance.x4 = myDefBalance.x4 + (myDefBalance.moffset.x - myDefBalance.mnear_x);
-  // myDefBalance.y4 = myDefBalance.y4 + (myDefBalance.moffset.y - myDefBalance.mnear_y);
-
   if (myGlobalDef.nightMode) {
     fill(0);
   } else {
@@ -276,7 +238,6 @@ function my_draw_clock_lines_balance_watch(myHour, myMin) {
   textAlign(CENTER, CENTER);
   text(myHour, calculatedHourMinCoord[0], calculatedHourMinCoord[1]);
   text(myMin, calculatedHourMinCoord[2], calculatedHourMinCoord[3]);
-//console.log(calculatedHourMinCoord);
 }
 
 function calculatePG_balance_watch(to_radians, r, r_text, myHour, myMin) {
@@ -351,10 +312,10 @@ function calculatePG_balance_watch(to_radians, r, r_text, myHour, myMin) {
   // get a image of current pg
   myDefBalance.pg.loadPixels();
   var d = pixelDensity();
-  
+
   // get every pixel color for min
-  for (var i = mbx1; i < mbx2; i ++) {
-    for (var j = mby1; j < mby2; j ++) {
+  for (var i = mbx1; i < mbx2; i++) {
+    for (var j = mby1; j < mby2; j++) {
       // var c = myDefBalance.pg.get(i, j);
       for (var k = 0; k < d; k++) {
         for (var l = 0; l < d; l++) {
@@ -381,8 +342,8 @@ function calculatePG_balance_watch(to_radians, r, r_text, myHour, myMin) {
   }
 
   // get every pixel color for hour
-  for (var i = hbx1; i < hbx2; i ++) {
-    for (var j = hby1; j < hby2; j ++) {
+  for (var i = hbx1; i < hbx2; i++) {
+    for (var j = hby1; j < hby2; j++) {
       // var c = myDefBalance.pg.get(i, j);
       for (var k = 0; k < d; k++) {
         for (var l = 0; l < d; l++) {
