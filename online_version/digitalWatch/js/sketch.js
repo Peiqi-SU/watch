@@ -1,4 +1,4 @@
-// For Yumi, Project Watch: Line, balance blue, dot
+// For Yumi, Project Watch: Line watch, balance blue watch, dot watch
 
 // Tweak interface /////////////////////////////////////////////
 var diaFactor = 6; // Watchface Diameter = windowWidth / diaFactor; Smaller diaFactor makes the watchface bigger.
