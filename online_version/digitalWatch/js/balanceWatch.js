@@ -6,9 +6,9 @@ function BalanceWatch(_windowWidth, _windowHeight) {
   myWindowHeight = _windowHeight;
 
   // won't update
-  var myFontSize = 22;
-  var myFontSizeToTop = 7; // myFontSize * 0.3
-  var myFontSizeToBtm = 12; // myFontSize * 0.5
+  var myFontSize = globalFontSize;
+  var myFontSizeToTop = myFontSize*0.3; // myFontSize * 0.3
+  var myFontSizeToBtm = myFontSize*0.6; // myFontSize * 0.5
   var calculate_pos_fisttime = true;
   var sec_begin = 12 * 60 * 60 + 12 * 60; // 12:12:00
   var sec_end = 1 * 60 * 60 + 1 * 60; // 1:01:00
@@ -102,7 +102,7 @@ function BalanceWatch(_windowWidth, _windowHeight) {
     text(myHour, calculatedHourMinCoord[0], calculatedHourMinCoord[1]);
     text(myMin, calculatedHourMinCoord[2], calculatedHourMinCoord[3]);
 
-    // for debug ///////////////////////////////////////////////////////////////////////////////
+    // for debug !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // image(pg, 0, 0);
   }
 
@@ -137,10 +137,10 @@ function BalanceWatch(_windowWidth, _windowHeight) {
     liney2 = y0 - sin(to_radians) * r;
 
     // min (x4, y4) hour(x3, y3)
-    hourMinCoord[0] = x0 + cos(to_radians + PI / 12) * r_text;
-    hourMinCoord[1] = y0 + sin(to_radians + PI / 12) * r_text;
-    hourMinCoord[2] = x0 - cos(to_radians - PI / 12) * r_text;
-    hourMinCoord[3] = y0 - sin(to_radians - PI / 12) * r_text;
+    hourMinCoord[0] = x0 + cos(to_radians + PI / 15) * r_text;
+    hourMinCoord[1] = y0 + sin(to_radians + PI / 15) * r_text;
+    hourMinCoord[2] = x0 - cos(to_radians - PI / 15) * r_text;
+    hourMinCoord[3] = y0 - sin(to_radians - PI / 15) * r_text;
 
     // line
     pg.fill(255, 0, 0);
@@ -167,7 +167,7 @@ function BalanceWatch(_windowWidth, _windowHeight) {
     mbx2 = int(hourMinCoord[2] + mcw / 2);
     mby2 = int(hourMinCoord[3] + myFontSizeToBtm * scaleK);
 
-    // debug
+    // debug !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // pg.rectMode(CORNERS);
     // pg.noFill();
     // pg.stroke(100);

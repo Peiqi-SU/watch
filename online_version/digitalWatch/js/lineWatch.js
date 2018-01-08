@@ -2,16 +2,18 @@
 function LineWatch(_thickness_vary) {
   this.thickness_vary = _thickness_vary; // update when press btn
   var myMin, nightMode; // update every frame
-  var scaleK, dia, watchX, watchY, thickness_begin, thickness_end, lineDist; // update when resize window
+  var scaleK, dia, watchX, watchY, thickness_begin, thickness_end, lineDist, lineWatchThicknessMin, lineWatchThicknessMax; // update when resize window
 
-  this.updateParameters = function(_scaleK, _dia, _watchX, _watchY) {
+  this.updateParameters = function(_scaleK, _dia, _watchX, _watchY, _lineWatchThicknessMin, _lineWatchThicknessMax) {
     scaleK = _scaleK;
     dia = _dia;
     watchX = _watchX;
     watchY = _watchY;
+    lineWatchThicknessMin = _lineWatchThicknessMin;
+    lineWatchThicknessMax = _lineWatchThicknessMax;
 
-    thickness_begin = 1 * scaleK;
-    thickness_end = 2 * scaleK;
+    thickness_begin = lineWatchThicknessMin * scaleK;
+    thickness_end = lineWatchThicknessMax * scaleK;
     lineDist = _dia / 60.0;
   }
 
