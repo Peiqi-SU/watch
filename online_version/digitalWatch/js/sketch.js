@@ -21,7 +21,7 @@ var bubbleWatchTranslateX = 0;
 var bubbleWatchTranslateY = 0;
 
 function preload() {
-  myFont = loadFont('../assets/RobotoRegular.ttf');
+  myFont = loadFont('assets/RobotoRegular.ttf');
 }
 
 function setup() {
